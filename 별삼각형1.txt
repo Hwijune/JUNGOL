@@ -1,0 +1,96 @@
+package jungol;
+
+import java.util.*;
+package jungol;
+
+import java.util.*;
+
+public class Maind
+{
+	public static void cho1(int num)
+	{
+		for (int i = 0; i < num; i++)
+		{
+			for (int j = 0; j < i + 1; j++)
+			{
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+
+	public static void cho2(int num)
+	{
+		for (int i = num; i > 0; i--)
+		{
+			for (int j = 0; j < i; j++)
+			{
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+
+	public static void cho3(int num)
+	{
+		int d = 1;
+		for (int i = 0; i < num; i++)
+		{
+			for (int j = 0; j < num - i - 1; j++)
+			{
+				System.out.print(" ");
+			}
+			for (int k = 0; k < d; k++)
+			{
+				System.out.print("*");
+			}
+			System.out.println();
+			d = d + 2;
+		}
+	}
+	
+	public static void cho4(int num)
+	{
+		int d = 1;
+		for (int i = 0; i < num; i++)
+		{
+			for (int j = 0; j < num - i - 1; j++)
+			{
+				System.out.print(" ");
+			}
+			for (int k = 0; k < d; k++)
+			{
+				System.out.print("*");
+			}
+			System.out.println();
+			d = d + 2;
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		int num = in.nextInt();
+		int cho = in.nextInt();
+
+		if (num > 100 || num<0 || cho<0 || cho>3 )
+			System.out.print("INPUT ERROR!");
+		else
+		{
+			if (cho == 1)
+			{
+				cho1(num);
+			} else if (cho == 2)
+			{
+				cho2(num);
+			} else if (cho == 3)
+			{
+				cho3(num);
+			}
+			else if(cho ==4)
+			{
+				cho4(num);
+			}
+		}
+	}
+}

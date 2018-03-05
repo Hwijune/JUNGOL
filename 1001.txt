@@ -1,0 +1,91 @@
+package jungol;
+
+
+
+import java.util.*;
+
+
+
+public class test
+
+{
+
+ public static void main(String args[])
+
+ {
+
+  Scanner in = new Scanner(System.in);
+
+  
+
+  while (true)
+
+  {
+
+   int dc = in.nextInt();
+
+   int leg = in.nextInt();
+
+   int d = 0;
+
+   int c = leg / 2;
+
+   if (dc + leg == 0)
+
+   {
+
+    break;
+
+   } 
+
+   else if (dc >= 1000 || leg >= 4000)
+
+   {
+
+    System.out.println("¿¡·¯");
+
+   } 
+
+   else if (c > dc)
+
+   {
+
+    while (d + c != dc)
+
+    {
+
+     c -= 2;
+
+     d++;
+
+    }
+
+    System.out.println(d + "," + c);
+
+   } 
+
+   else if (c == dc)
+
+   {
+
+    System.out.println(c);
+
+   } 
+
+   else
+
+   {
+
+    System.out.println(0);
+
+   }
+
+  }
+
+
+
+ }
+
+
+
+}

@@ -1,0 +1,182 @@
+package dd;
+
+import java.util.*;
+
+public class Main
+{
+
+	public static void rr(int arr[][], int len)
+	{
+		for (int i = 0; i < arr.length; i++) // 테두리 그리기
+		{
+			for (int j = 0; j < arr[i].length; j++)
+			{
+				if (i == 0 && j == 0 && arr[i][j] != 0 && arr[i][j + 1] != 0 && arr[i + 1][j] != 0 && arr[i][j] == 7
+						&& arr[i][j + 1] == 7 && arr[i + 1][j] == 7) // 좌측 상단
+				{
+					arr[i][j] = 4;
+					arr[i][j + 1] = 4;
+					arr[i + 1][j] = 4;
+				} else if (i == 0 && j == len - 1 && arr[i][j] != 0 && arr[i][j - 1] != 0 && arr[i + 1][j] != 0
+						&& arr[i][j] == 7 && arr[i][j - 1] == 7 && arr[i + 1][j] == 7) // 우측상단
+				{
+					arr[i][j] = 3;
+					arr[i][j - 1] = 3;
+					arr[i + 1][j] = 3;
+				} else if (i == len - 1 && j == 0 && arr[i][j] != 0 && arr[i - 1][j] != 0 && arr[i][j + 1] != 0
+						&& arr[i][j] == 7 && arr[i - 1][j] == 7 && arr[i][j + 1] == 7) // 좌측
+				// 하단
+				{
+					arr[i][j] = 2; // 가운데
+					arr[i - 1][j] = 2; // 위에
+					arr[i][j + 1] = 2; // 오른쪽
+				} else if (i == len - 1 && j == len - 1 && arr[i][j] != 0 && arr[i - 1][j] != 0 && arr[i][j - 1] != 0
+						&& arr[i][j] == 7 && arr[i - 1][j] == 7 && arr[i][j - 1] == 7) // 우측하단
+				{
+					arr[i][j] = 1; // 가운데
+					arr[i - 1][j] = 1; // 위에
+					arr[i][j - 1] = 1; // 왼쪽
+				}
+			}
+		}
+
+		// 1 넣기
+		boolean plag = true;
+
+		int xpos = len - 2;
+		int ypos = len - 2;
+		while (plag)
+		{
+			if (arr[xpos][ypos] == 7 && arr[xpos - 1][ypos] == 7 && arr[xpos][ypos - 1] == 7)
+			{
+				arr[xpos][ypos] = 1; // 가운데
+				arr[xpos - 1][ypos] = 1; // 위에
+				arr[xpos][ypos - 1] = 1; // 왼쪽
+				--xpos;
+				--ypos;
+			} else
+				plag = false;
+		}
+
+		// 2 넣기
+
+		plag = true;
+
+		xpos = len - 2;
+		ypos = 1;
+		while (plag)
+		{
+			if (arr[xpos][ypos] == 7 && arr[xpos - 1][ypos] == 7 && arr[xpos][ypos + 1] == 7)
+			{
+				arr[xpos][ypos] = 2; // 가운데
+				arr[xpos - 1][ypos] = 2; // 위에
+				arr[xpos][ypos + 1] = 2; // 오른쪽
+				--xpos;
+				++ypos;
+			} else
+				plag = false;
+		}
+
+		// 3 넣기
+
+		plag = true;
+
+		xpos = 1;
+		ypos = len - 2;
+		while (plag)
+		{
+			if (arr[xpos][ypos] == 7 && arr[xpos][ypos - 1] == 7 && arr[xpos + 1][ypos] == 7)
+			{
+				arr[xpos][ypos] = 3;
+				arr[xpos][ypos - 1] = 3;
+				arr[xpos + 1][ypos] = 3;
+				++xpos;
+				--ypos;
+			} else
+				plag = false;
+		}
+
+		// 4 넣기
+
+		plag = true;
+
+		xpos = 1;
+		ypos = 1;
+		while (plag)
+		{
+			if (arr[xpos][ypos] == 7 && arr[xpos][ypos + 1] == 7 && arr[xpos + 1][ypos] == 7)
+			{
+				arr[xpos][ypos] = 4;
+				arr[xpos][ypos + 1] = 4;
+				arr[xpos + 1][ypos] = 4;
+				++xpos;
+				++ypos;
+			} else
+				plag = false;
+		}
+
+		for (int i = 0; i < arr.length; i++) // 남은 테두리 그리기
+		{
+			for (int j = 0; j < arr[i].length; j++)
+			{
+				if (j - i == 3 && arr[i][j] == 7 && arr[i][j - 1] == 7 && arr[i + 1][j] == 7) // 3
+				{
+					arr[i][j] = 3;
+					arr[i][j - 1] = 3;
+					arr[i + 1][j] = 3;
+				} else if (i - j == 3 && arr[i][j] == 7 && arr[i - 1][j] == 7 && arr[i][j + 1] == 7) // 2
+				{
+					arr[i][j] = 2; // 가운데
+					arr[i - 1][j] = 2; // 위에
+					arr[i][j + 1] = 2; // 오른쪽
+				} else if ((i - j == 4 || j - i == 4) && i < 6 && j < 6 && arr[i][j] == 7 && arr[i][j + 1] == 7
+						&& arr[i + 1][j] == 7) // 4
+				{
+					arr[i][j] = 4;
+					arr[i][j + 1] = 4;
+					arr[i + 1][j] = 4;
+				}
+				else if((i - j == 4 || j - i == 4)&&arr[i][j] == 7 && arr[i - 1][j] == 7 && arr[i][j - 1] == 7)
+				{
+					arr[i][j] = 1; // 가운데
+					arr[i - 1][j] = 1; // 위에
+					arr[i][j - 1] = 1; // 왼쪽
+				}
+			}
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+
+		int len = in.nextInt();
+
+		int x = in.nextInt();
+		int y = in.nextInt();
+
+		int arr[][] = new int[len][len];
+
+		for (int i = 0; i < arr.length; i++) // 7넣기
+		{
+			for (int j = 0; j < arr[i].length; j++)
+			{
+				arr[i][j] = 7;
+			}
+		}
+		arr[x][y] = 0;
+
+		rr(arr, len);
+
+		for (int i = 0; i < arr.length; i++)
+		{
+			for (int j = 0; j < arr[i].length; j++)
+			{
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+		}
+
+	}
+
+}

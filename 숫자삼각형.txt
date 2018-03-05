@@ -1,0 +1,96 @@
+package jungol;
+
+import java.util.*;
+
+public class Maind
+{
+	public static void cho1(int num)
+	{
+		int number = 1;
+		int renum = 0;
+		int sto = 0;
+		for (int i = 1; i < num + 1; i++)
+		{
+			renum = number + i - 1;
+			sto = renum;
+			for (int j = 1; j < i + 1; j++)
+			{
+				if (i % 2 == 0)
+				{
+					System.out.print(renum + " ");
+					renum--;
+					number = sto + 1;
+				} else
+				{
+					System.out.print(number + " ");
+					number++;
+				}
+			}
+			System.out.println();
+		}
+	}
+
+	public static void cho2(int num)
+	{
+		int d = num * 2 - 1;
+		int c = 0;
+		for (int i = 0; i < num * 2 - 1; i++)
+		{
+			for (int j = 0; j < c; j++)
+			{
+				System.out.print("  ");
+			}
+			c++;
+			for (int j = 0; j < d; j++)
+			{
+				System.out.print(i + " ");
+			}
+			System.out.println();
+			d = d - 2;
+		}
+	}
+
+	public static void cho3(int num)
+	{
+		int half = num / 2 + 1;
+		for (int i = 0; i < half; i++)
+		{
+			for (int j = 0; j < i + 1; j++)
+			{
+				System.out.print(j+1 + " ");
+			}
+			System.out.println();
+		}
+		for (int i = half - 1; i > 0; i--)
+		{
+			for (int j = 0; j < i; j++)
+			{
+				System.out.print(j+1 + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		int num = in.nextInt();
+		int cho = in.nextInt();
+
+		if (num%2==0 || num > 100 || num < 0 || cho < 0 || cho > 3)
+			System.out.print("INPUT ERROR!");
+		else
+		{
+			if (cho == 1)
+			{
+				cho1(num);
+			} else if (cho == 2)
+			{
+				cho2(num);
+			} else if (cho == 3)
+			{
+				cho3(num);
+			}
+		}
+	}
+}

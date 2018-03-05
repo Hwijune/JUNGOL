@@ -1,0 +1,62 @@
+package jungol;
+
+import java.util.*;
+
+public class Maind
+{
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+		int len = in.nextInt();
+
+		int arr[][] = new int[len][len];
+
+		int oarr[] = new int[10000];
+		int j = 0;
+
+		for (int i = 0; i < oarr.length; i++)
+		{
+			oarr[i] = j;
+			j++;
+			if (j == 10)
+			{
+				j = 0;
+			}
+		}
+		
+		int x=-1;
+		int y=-1;
+		int n=len;
+		int k=0;
+		while(0<n)
+		{
+			for(int i=0; i<n; i++)
+			{
+				arr[++x][++y]=oarr[k];
+				k++;
+			}
+			n--;
+			for(int i=0; i<n; i++)
+			{
+				arr[x][--y]=oarr[k];
+				k++;
+			}
+			n--;
+			for(int i=0; i<n; i++)
+			{
+				arr[--x][y]=oarr[k];
+				k++;
+			}
+			n--;
+		}
+		
+		for(int i=0; i<arr.length;i++)
+		{
+			for(int q=0; q<arr.length; q++)
+			{
+				System.out.print(arr[i][q]+" ");
+			}
+			System.out.println();
+		}
+	}
+}

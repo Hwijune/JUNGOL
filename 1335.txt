@@ -1,0 +1,96 @@
+package dd;
+
+import java.util.*;
+
+public class ddd
+{
+	static int blue = 0;
+	static int white = 0;
+
+	public static void cp1(int[][] arr, int len, int x, int y)
+	{
+		int h = len / 2;
+		int bcount = 0;
+		int wcount = 0;
+
+		// ÁÂ»ó´Ü
+		for (int i = x; i < x + h; i++)
+		{
+			for (int j = y; j < y + h; j++)
+			{
+				if (arr[i][j] == 1)
+				{
+					bcount++;
+					if (bcount == h * h)
+					{
+						for (int w = x; w < x + h; w++)
+						{
+							for (int k = y; k < y + h; k++)
+							{
+								arr[w][k] = 7;
+							}
+						}
+						blue++;
+					}
+				} else if (arr[i][j] == 0)
+				{
+					wcount++;
+					if (wcount == h * h)
+					{
+						for (int w = x; w < x + h; w++)
+						{
+							for (int k = y; k < y + h; k++)
+							{
+								arr[w][k] = 8;
+							}
+						}
+						white++;
+					}
+				}
+			}
+		}
+		len = len / 2;
+		if (len >= 2)
+		{
+			cp1(arr, len, x, y);
+			cp1(arr, len, x, y + h / 2);
+			cp1(arr, len, x + h / 2, y);
+			cp1(arr, len, x + h / 2, y + h / 2);
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		Scanner in = new Scanner(System.in);
+
+		int len = in.nextInt();
+
+		int arr[][] = new int[len][len];
+
+		for (int i = 0; i < len; i++)
+		{
+			for (int j = 0; j < len; j++)
+			{
+				arr[i][j] = in.nextInt();
+			}
+		}
+
+		cp1(arr, len, 0, 0);
+		cp1(arr, len, 0, len / 2);
+		cp1(arr, len, len / 2, 0);
+		cp1(arr, len, len / 2, len / 2);
+
+//		for (int i = 0; i < len; i++)
+//		{
+//			for (int j = 0; j < len; j++)
+//			{
+//				System.out.print(arr[i][j] + " ");
+//			}
+//			System.out.println();
+//		}
+
+		System.out.println(white);
+		System.out.println(blue);
+	}
+
+}
